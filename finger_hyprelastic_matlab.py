@@ -190,7 +190,7 @@ def createScene(rootNode):
 	tetras = finger.addObject('MechanicalObject', name='tetras', template='Vec3d', src = '@loader')
 	finger.addObject('TetrahedronSetTopologyContainer', name="topo", src ='@loader')
 	finger.addObject('TetrahedronSetTopologyModifier' ,  name="Modifier", listening = True)
-	finger.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3d" ,name="GeomAlgo", listening = True)
+	finger.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3d" ,name="GeomAlgo", listening = True, drawTriangles =1)
 
 	#finger.addObject('MeshMatrixMass', massDensity='9.155e-9', src = '@topo')
 	finger.addObject('UniformMass', totalMass='30e-6', src = '@topo')
@@ -203,7 +203,6 @@ def createScene(rootNode):
 
 	finger.addObject('TetrahedronHyperelasticityFEMForceField', template='Vec3d', name='FEM', ParameterSet=str(mu1)+' '+str(k0),materialName="NeoHookean")	
 
-	#finger.addObject('TetrahedronHyperelasticityFEMForceField', template='Vec3d', name='FEM', ParameterSet=str(mu)+' '+str(k0),materialName="NeoHookean")
 
 	finger.addObject('BoxROI', name='boxROI', box=[-24,-15,45, 24,15, 60], drawBoxes=True)
 	finger.addObject('RestShapeSpringsForceField', points='@boxROI.indices', stiffness=1e12, angularStiffness=1e12)
@@ -234,15 +233,15 @@ def createScene(rootNode):
 	cavity.addObject('BarycentricMapping', name='mapping', mapForces=False, mapMasses=False)
 	cavity.addObject(FingerController(node=rootNode, position = rootNode.finger.tetras.position.value, tetrahedra = rootNode.finger.loader.tetrahedra.value, pressure = rootNode.finger.cavity.SurfacePressureConstraint))
 
-	modelVisu = finger.addChild('visu')
-	modelVisu.addObject('MeshObjLoader', name='loader', filename='design1/Actuator_Tube_v8.obj')
-	modelVisu.addObject('OglModel', src='@loader', color='yellow')
-	modelVisu.addObject('BarycentricMapping')
+	#modelVisu = finger.addChild('visu')
+	#modelVisu.addObject('MeshObjLoader', name='loader', filename='design1/Actuator_Tube_v8.obj')
+	#modelVisu.addObject('OglModel', src='@loader', color='yellow')
+	#modelVisu.addObject('BarycentricMapping')
 
-	modelVisu1 = finger.addChild('visu1')
-	modelVisu1.addObject('MeshObjLoader', name='loader', filename='design1/Actuator_Reinforcement_v9.obj')
-	modelVisu1.addObject('OglModel', src='@loader', color=[1,1,1,255])
-	modelVisu1.addObject('BarycentricMapping')
+	#modelVisu1 = finger.addChild('visu1')
+	#modelVisu1.addObject('MeshObjLoader', name='loader', filename='design1/Actuator_Reinforcement_v9.obj')
+	#modelVisu1.addObject('OglModel', src='@loader', color=[1,1,1,255])
+	#modelVisu1.addObject('BarycentricMapping')
 
 
 	return rootNode

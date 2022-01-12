@@ -33,7 +33,7 @@ def createScene(rootNode):
 	tetras = finger.createObject('MechanicalObject', name='tetras', template='Vec3d', src = '@loader')
 	finger.createObject('TetrahedronSetTopologyContainer', name="topo", src ='@loader')
 	finger.createObject('TetrahedronSetTopologyModifier' ,  name="Modifier", listening = True)
-	finger.createObject('TetrahedronSetGeometryAlgorithms', template="Vec3d" ,name="GeomAlgo", listening = True)
+	finger.createObject('TetrahedronSetGeometryAlgorithms', template="Vec3d" ,name="GeomAlgo", listening = True, drawTriangles =1)
 
 	#finger.createObject('MeshMatrixMass', massDensity='9.155e-9', src = '@topo')
 	finger.createObject('UniformMass', totalMass='30e-6', src = '@topo')
@@ -74,15 +74,15 @@ def createScene(rootNode):
 	cavity.createObject('SurfacePressureConstraint', name='SurfacePressureConstraint', template='Vec3d', value= 0, triangles='@cavityMesh.triangles', valueType='pressure')
 	cavity.createObject('BarycentricMapping', name='mapping', mapForces=False, mapMasses=False)
 
-	modelVisu = finger.createChild('visu')
-	modelVisu.createObject('MeshObjLoader', name='loader', filename=path+'Actuator_Tube_v8.obj')
-	modelVisu.createObject('OglModel', src='@loader', color='yellow')
-	modelVisu.createObject('BarycentricMapping')
+	#modelVisu = finger.createChild('visu')
+	#modelVisu.createObject('MeshObjLoader', name='loader', filename=path+'Actuator_Tube_v8.obj')
+	#modelVisu.createObject('OglModel', src='@loader', color='yellow')
+	#modelVisu.createObject('BarycentricMapping')
 
-	modelVisu1 = finger.createChild('visu1')
-	modelVisu1.createObject('MeshObjLoader', name='loader', filename=path+'Actuator_Reinforcement_v9.obj')
-	modelVisu1.createObject('OglModel', src='@loader', color=[1,1,1,255])
-	modelVisu1.createObject('BarycentricMapping')
+	#modelVisu1 = finger.createChild('visu1')
+	#modelVisu1.createObject('MeshObjLoader', name='loader', filename=path+'Actuator_Reinforcement_v9.obj')
+	#modelVisu1.createObject('OglModel', src='@loader', color=[1,1,1,255])
+	#modelVisu1.createObject('BarycentricMapping')
 
 
 	return rootNode
